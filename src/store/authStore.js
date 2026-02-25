@@ -5,6 +5,7 @@ const useAuthStore = create((set) => ({
     user: null,
     token: localStorage.getItem('token'),
     isAuthenticated: !!localStorage.getItem('token'),
+    isInitializing: true,
     loading: false,
 
     login: async (email, password) => {
@@ -42,13 +43,16 @@ const useAuthStore = create((set) => ({
     },
 
     checkAuth: async () => {
-        if (!localStorage.getItem('token')) return;
+        if (!localStorage.getItem('token')) {
+            set({ isInitializing: false });
+            return;
+        }
         try {
             const res = await api.get('/auth/me');
-            set({ user: res.data.user, isAuthenticated: true });
+            set({ user: res.data.user, isAuthenticated: true, isInitializing: false });
         } catch (error) {
             localStorage.removeItem('token');
-            set({ user: null, isAuthenticated: false });
+            set({ user: null, isAuthenticated: false, isInitializing: false });
         }
     }
 }));

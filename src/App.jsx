@@ -10,17 +10,26 @@ const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const BoardView = React.lazy(() => import('./pages/BoardView'));
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, checkAuth } = useAuthStore();
+  const { isAuthenticated, isInitializing } = useAuthStore();
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+  if (isInitializing) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-slate-950">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) return <Navigate to="/login" />;
   return children;
 };
 
 function App() {
+  const { checkAuth } = useAuthStore();
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
     <BrowserRouter>
       <Layout>
