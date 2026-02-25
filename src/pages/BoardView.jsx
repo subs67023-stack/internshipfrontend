@@ -148,21 +148,21 @@ const BoardView = () => {
     );
 
     return (
-        <div className="h-[calc(100vh-120px)] flex flex-col">
+        <div className="h-full flex flex-col pt-2 md:pt-0">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
                 <div className="flex items-center space-x-4">
-                    <button onClick={() => navigate('/dashboard')} className="p-2 hover:bg-slate-800 rounded-lg text-slate-400 border border-slate-800">
+                    <button onClick={() => navigate('/dashboard')} className="p-2.5 hover:bg-slate-800 rounded-xl text-slate-400 border border-slate-800 transition-colors shadow-lg">
                         <ArrowLeft size={20} />
                     </button>
                     <div>
-                        <h1 className="text-2xl font-bold text-white">{currentBoard?.title}</h1>
+                        <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">{currentBoard?.title}</h1>
                         <div className="flex items-center space-x-2 mt-1">
-                            <span className="text-xs font-medium px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20">
+                            <span className="text-[10px] md:text-xs font-bold px-2.5 py-1 bg-blue-500/10 text-blue-400 rounded-lg border border-blue-500/20 uppercase tracking-wider">
                                 {currentBoard?.visibility}
                             </span>
-                            <span className="text-slate-500 text-xs">•</span>
-                            <div className="flex items-center space-x-2 text-xs text-slate-400">
+                            <span className="text-slate-700 text-xs">•</span>
+                            <div className="flex items-center space-x-2 text-[10px] md:text-xs text-slate-500 font-medium">
                                 <Users size={14} />
                                 <span>{currentBoard?.members.length} members</span>
                             </div>
@@ -170,38 +170,39 @@ const BoardView = () => {
                     </div>
                 </div>
 
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 w-full lg:w-auto">
                     <button
                         onClick={() => setShowInviteModal(true)}
-                        className="p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700 transition-colors"
+                        className="flex-1 lg:flex-none flex items-center justify-center space-x-2 p-3 lg:p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700 transition-all font-semibold"
                         title="Invite Members"
                     >
                         <UserPlus size={20} />
+                        <span className="lg:hidden text-sm">Invite</span>
                     </button>
                     <button
                         onClick={createSnapshot}
                         disabled={saving}
-                        className="flex items-center space-x-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all disabled:opacity-50"
+                        className="flex-2 lg:flex-none flex items-center justify-center space-x-2 px-6 py-3 lg:py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-indigo-600/20 disabled:opacity-50 active:scale-95"
                     >
                         {saving ? <Loader2 className="animate-spin" size={20} /> : <Clock size={20} />}
-                        <span>Snapshot</span>
+                        <span className="text-sm">Create Snapshot</span>
                     </button>
                 </div>
             </div>
 
             {/* Tabs */}
-            <div className="flex space-x-1 p-1 bg-slate-900 border border-slate-800 rounded-2xl mb-6 w-fit">
+            <div className="flex space-x-1 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl mb-6 w-full lg:w-fit overflow-x-auto no-scrollbar">
                 <button
                     onClick={() => setActiveTab('notes')}
-                    className={`flex items-center space-x-2 px-6 py-2 rounded-xl text-sm font-semibold transition-all ${activeTab === 'notes' ? 'bg-slate-800 text-blue-400 shadow-lg' : 'text-slate-400 hover:text-slate-200'
+                    className={`flex-1 lg:flex-none flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'notes' ? 'bg-slate-800 text-blue-400 shadow-md ring-1 ring-slate-700' : 'text-slate-500 hover:text-slate-300'
                         }`}
                 >
                     <FileText size={18} />
-                    <span>Collaborative Notes</span>
+                    <span>Live Notes</span>
                 </button>
                 <button
                     onClick={() => setActiveTab('tasks')}
-                    className={`flex items-center space-x-2 px-6 py-2 rounded-xl text-sm font-semibold transition-all ${activeTab === 'tasks' ? 'bg-slate-800 text-blue-400 shadow-lg' : 'text-slate-400 hover:text-slate-200'
+                    className={`flex-1 lg:flex-none flex items-center justify-center space-x-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'tasks' ? 'bg-slate-800 text-blue-400 shadow-md ring-1 ring-slate-700' : 'text-slate-500 hover:text-slate-300'
                         }`}
                 >
                     <CheckSquare size={18} />
