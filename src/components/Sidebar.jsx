@@ -16,7 +16,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-screen stick top-0">
+        <div className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col h-screen sticky top-0">
             <div className="p-6">
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
                     SyncBoard
@@ -29,8 +29,8 @@ const Sidebar = () => {
                         key={item.name}
                         onClick={() => navigate(item.path)}
                         className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${location.pathname === item.path
-                                ? 'bg-blue-600/10 text-blue-400'
-                                : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                            ? 'bg-blue-600/10 text-blue-400'
+                            : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'
                             }`}
                     >
                         <item.icon size={20} />
