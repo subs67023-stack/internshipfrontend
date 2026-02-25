@@ -48,6 +48,30 @@ function App() {
               </ProtectedRoute>
             } />
 
+            <Route path="/boards" element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+
+            <Route path="/members" element={
+              <ProtectedRoute>
+                <div className="p-8 text-white">
+                  <h1 className="text-2xl font-bold mb-4">Members</h1>
+                  <p className="text-slate-400">Collaborator management coming soon...</p>
+                </div>
+              </ProtectedRoute>
+            } />
+
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <div className="p-8 text-white">
+                  <h1 className="text-2xl font-bold mb-4">Settings</h1>
+                  <p className="text-slate-400">Account settings coming soon...</p>
+                </div>
+              </ProtectedRoute>
+            } />
+
             <Route path="/boards/:id" element={
               <ProtectedRoute>
                 <BoardView />
