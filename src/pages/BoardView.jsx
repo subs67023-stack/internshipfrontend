@@ -106,6 +106,17 @@ const BoardView = () => {
         }
     };
 
+    const handleDeleteTask = async (taskId) => {
+        if (!window.confirm('Are you sure you want to delete this task?')) return;
+        try {
+            await api.delete(`/tasks/${taskId}`);
+            fetchBoardById(id);
+            socketService.emit('task_delete', { board_id: id, task_id: taskId });
+        } catch (error) {
+            console.error('Failed to delete task:', error);
+        }
+    };
+
     const handleInvite = async (e) => {
         e.preventDefault();
         try {
@@ -261,7 +272,10 @@ const BoardView = () => {
                                             {task.title}
                                         </span>
                                     </div>
-                                    <button className="text-slate-600 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100 p-2">
+                                    <button
+                                        onClick={() => handleDeleteTask(task.id)}
+                                        className="text-slate-600 hover:text-red-400 transition-colors opacity-0 group-hover:opacity-100 p-2"
+                                    >
                                         <Trash2 size={18} />
                                     </button>
                                 </div>

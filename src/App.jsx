@@ -8,6 +8,8 @@ const Login = React.lazy(() => import('./pages/Login'));
 const Register = React.lazy(() => import('./pages/Register'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 const BoardView = React.lazy(() => import('./pages/BoardView'));
+const Members = React.lazy(() => import('./pages/Members'));
+const Settings = React.lazy(() => import('./pages/Settings'));
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, isInitializing } = useAuthStore();
@@ -56,19 +58,13 @@ function App() {
 
             <Route path="/members" element={
               <ProtectedRoute>
-                <div className="p-8 text-white">
-                  <h1 className="text-2xl font-bold mb-4">Members</h1>
-                  <p className="text-slate-400">Collaborator management coming soon...</p>
-                </div>
+                <Members />
               </ProtectedRoute>
             } />
 
             <Route path="/settings" element={
               <ProtectedRoute>
-                <div className="p-8 text-white">
-                  <h1 className="text-2xl font-bold mb-4">Settings</h1>
-                  <p className="text-slate-400">Account settings coming soon...</p>
-                </div>
+                <Settings />
               </ProtectedRoute>
             } />
 
