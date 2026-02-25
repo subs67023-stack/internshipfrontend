@@ -14,7 +14,7 @@ const SettingsPage = () => {
     ];
 
     return (
-        <div className="p-8 max-w-4xl mx-auto h-screen overflow-y-auto">
+        <div className="max-w-4xl">
             <header className="mb-12">
                 <h1 className="text-3xl font-bold text-white mb-2">Workspace Settings</h1>
                 <p className="text-slate-400">Manage your account preferences and application settings.</p>
@@ -36,7 +36,11 @@ const SettingsPage = () => {
 
                 <div className="space-y-4">
                     {sections.map((section) => (
-                        <div key={section.name} className="group flex items-center justify-between p-4 bg-slate-800/30 hover:bg-slate-800/60 border border-slate-700/50 rounded-2xl transition-all cursor-pointer">
+                        <div
+                            key={section.name}
+                            onClick={() => alert(`${section.name} settings coming soon!`)}
+                            className="group flex items-center justify-between p-4 bg-slate-800/30 hover:bg-slate-800/60 border border-slate-700/50 rounded-2xl transition-all cursor-pointer"
+                        >
                             <div className="flex items-center space-x-4">
                                 <div className="p-2.5 bg-slate-800 rounded-xl group-hover:bg-blue-600/10 transition-colors">
                                     <section.icon className="text-slate-400 group-hover:text-blue-400" size={24} />
@@ -59,7 +63,10 @@ const SettingsPage = () => {
                     <h3 className="text-red-400 font-bold">Danger Zone</h3>
                     <p className="text-red-400/60 text-sm">Delete your account and all associated data</p>
                 </div>
-                <button className="px-6 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 font-bold rounded-xl border border-red-500/20 transition-all">
+                <button
+                    onClick={() => alert('Account deletion is disabled for demo purposes.')}
+                    className="px-6 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 font-bold rounded-xl border border-red-500/20 transition-all"
+                >
                     Delete Account
                 </button>
             </div>

@@ -14,7 +14,7 @@ const MembersPage = () => {
     if (loading) return <div className="p-8 text-white">Loading...</div>;
 
     return (
-        <div className="p-8 max-w-6xl mx-auto h-screen overflow-y-auto">
+        <div className="max-w-6xl">
             <header className="mb-8">
                 <h1 className="text-3xl font-bold text-white mb-2">Team Collaboration</h1>
                 <p className="text-slate-400">Manage your project members and their roles across your boards.</p>
